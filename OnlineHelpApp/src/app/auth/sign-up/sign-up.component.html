@@ -1,0 +1,30 @@
+ 
+<form [formGroup]="authForm" class="ui form" (ngSubmit)="onSubmit()">
+    <h4 class="ui dividing header">All fields are Required</h4>
+
+    <app-input inputType="text" label="Username" [control]="authForm.get('username')"></app-input>
+    <app-input inputType="email" label="Email" [control]="authForm.get('email')"></app-input>
+    <app-input inputType="password" label="password" [control]="authForm.get('password')"></app-input>
+    <app-input  inputType="password"label="Password Confirm" [control]="authForm.get('passwordConfirm')"></app-input>
+    
+    <div class="ui red basic label" 
+    *ngIf="authForm.get('password').touched 
+            && authForm.get('passwordConfirm').touched 
+            && authForm.errors">
+        <p *ngIf="authForm.errors.passwordsDontMatch">
+            passwords don't match, try again
+        </p>
+        <p *ngIf="authForm.errors.nonUniqueName">
+            no internet connection
+        </p>
+        <p *ngIf="authForm.errors.unknownError">
+            failed to sign up
+        </p>
+    </div>
+    <div>
+        <button class="ui submit button primary"> submit</button>
+
+    </div>
+
+
+</form>
